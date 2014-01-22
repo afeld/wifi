@@ -3,7 +3,15 @@
   <head>
     <title>Nearby Wi-Fi Spots</title>
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="wifi.js"></script>
+    <script type="text/template" id="venues">
+      <ul>
+        <% venues.forEach(function(venue) { %>
+          <li><%= venue.name %></li>
+        <% }); %>
+      </ul>
+    </script>
   </head>
   <body>
   </body>

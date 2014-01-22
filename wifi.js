@@ -35,18 +35,24 @@
 
   var getVenues = function(coords) {
     var url = 'https://api.foursquare.com/v2/venues/search';
-
-    return $.getJSON(url, {
+    var query = {
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
       v: 20140122,
+
       q: 'wi-fi',
       ll: coords.latitude + ',' + coords.longitude
-    });
+    };
+
+    return $.getJSON(url, query);
   };
 
   var displayVenues = function(data) {
-    console.log(data);
+    var template = $('#venues').text();
+    var markup = _.template(template, {
+      venues: data.response.venues
+    });
+    $('body').html(markup);
   };
 
 
