@@ -18,6 +18,7 @@
     $scope.$watch('coords', function(coords){
       if (coords) {
         var venuesPromise = $http.get('https://api.foursquare.com/v2/venues/search', {
+          cache: true,
           params: {
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
