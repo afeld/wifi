@@ -1,0 +1,19 @@
+{
+  "name": "wifi",
+  "homepage": "https://github.com/afeld/wifi",
+  "authors": [
+    "Aidan Feldman <aidan.feldman@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs-geolocation": "~0.1.1"
+  }
+}
