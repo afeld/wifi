@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="wifiApp">
   <head>
     <title>Nearby Wi-Fi Spots</title>
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+    <script src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
     <script src="wifi.js"></script>
-    <script type="text/template" id="venues">
-      <ul>
-        <% venues.forEach(function(venue) { %>
-          <li><%= venue.name %></li>
-        <% }); %>
-      </ul>
-    </script>
   </head>
-  <body>
+  <body ng-controller="VenuesCtrl">
+    {{coords.lat}}, {{coords.long}}
+    <ul>
+      <li ng-repeat="venue in venues">
+        {{venue.name}}
+      </li>
+    </ul>
   </body>
 </html>
