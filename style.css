@@ -4,16 +4,13 @@ body {
 }
 
 li {
+  color: gray;
   line-height: 1.4;
   padding: 4px 0;
 }
 
 .result-wrap {
   padding: 3px 5px;
-}
-
-.state-pending {
-  color: gray;
 }
 
 .is-open-true .is-open-icon {
