@@ -11,7 +11,7 @@
   <body ng-controller="VenuesCtrl">
     {{coords.latitude}}, {{coords.longitude}}
     <ul>
-      <li ng-repeat="venue in venues" class="state-{{venue.state}} has-wifi-{{venue.hasWifi}}">
+      <li ng-repeat="venue in venues" class="state-{{venue.state}} has-wifi-{{venue.hasWifi}} is-open-{{venue.hours.isOpen}}">
         <span class="result-wrap">{{venue.name}}</span>
       </li>
     </ul>

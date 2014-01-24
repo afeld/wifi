@@ -5,6 +5,7 @@ body {
 
 li {
   line-height: 1.4;
+  padding: 4px 0;
 }
 
 .result-wrap {
@@ -19,8 +20,13 @@ li {
   background-color: green;
   color: white;
 }
-
 .has-wifi-false {
   color: red;
-  text-decoration: line-through;
+}
+
+.is-open-true .result-wrap {
+  border: 2px solid black;
+}
+.is-open-false .result-wrap {
+  border: 2px solid red;
 }
