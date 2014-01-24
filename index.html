@@ -2,6 +2,7 @@
 <html ng-app="wifiApp">
   <head>
     <title>Nearby Wi-Fi Spots</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
     <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
     <script src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
@@ -10,7 +11,7 @@
   <body ng-controller="VenuesCtrl">
     {{coords.latitude}}, {{coords.longitude}}
     <ul>
-      <li ng-repeat="venue in venues">
+      <li ng-repeat="venue in venues" class="state-{{venue.state}} has-wifi-{{venue.hasWifi}}">
         {{venue.name}}
       </li>
     </ul>

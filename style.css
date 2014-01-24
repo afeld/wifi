@@ -1,0 +1,11 @@
+.state-pending {
+  color: gray;
+}
+
+.has-wifi-true {
+  color: green;
+}
+
+.has-wifi-false {
+  color: red;
+}

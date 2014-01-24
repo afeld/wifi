@@ -5,6 +5,7 @@
 
   var wifiApp = angular.module('wifiApp', ['geolocation', 'jmdobry.angular-cache']);
 
+
   wifiApp.run(function($http, $angularCacheFactory) {
     // http://jmdobry.github.io/angular-cache/configuration.html
     $angularCacheFactory('httpCache', {
@@ -21,6 +22,7 @@
     $http.defaults.cache = $angularCacheFactory.get('httpCache');
   });
 
+
   wifiApp.factory('venuesApi', function($http) {
     return {
       get: function(coords) {
@@ -32,6 +34,7 @@
             v: 20140122,
 
             q: 'wi-fi',
+            intent: 'checkin',
             ll: coords.latitude + ',' + coords.longitude
           }
         });
@@ -46,7 +49,37 @@
   });
 
 
-  wifiApp.controller('VenuesCtrl', function($scope, geolocation, venuesApi) {
+  wifiApp.factory('venueDetails', function($http) {
+    return {
+      get: function(venueId) {
+        var venuePromise = $http.get('https://api.foursquare.com/v2/venues/' + venueId, {
+          cache: true,
+          params: {
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            v: 20140122
+          }
+        });
+
+        venuePromise = venuePromise.then(function(data){
+          var venue = data.data.response.venue;
+
+          angular.forEach(venue.attributes.groups, function(group){
+            if (group.type === 'wifi') {
+              venue.hasWifi = group.items[0].displayValue === 'Yes';
+            }
+          });
+
+          return venue;
+        });
+
+        return venuePromise;
+      }
+    };
+  });
+
+
+  wifiApp.controller('VenuesCtrl', function($scope, geolocation, venuesApi, venueDetails) {
     $scope.venues = [];
 
     geolocation.getLocation().then(function(data){
@@ -57,6 +90,15 @@
       if (coords) {
         var venuesPromise = venuesApi.get(coords);
         venuesPromise.then(function(venues){
+          angular.forEach(venues, function(venue){
+            venue.state = 'partial';
+
+            venueDetails.get(venue.id).then(function(fullVenue){
+              angular.copy(fullVenue, venue);
+              venue.state = 'full';
+            })
+          });
+
           $scope.venues = venues;
         });
       }
