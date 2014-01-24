@@ -1,11 +1,26 @@
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 1.1em;
+}
+
+li {
+  line-height: 1.4;
+}
+
+.result-wrap {
+  padding: 1px 3px;
+}
+
 .state-pending {
   color: gray;
 }
 
-.has-wifi-true {
-  color: green;
+.has-wifi-true .result-wrap {
+  background-color: green;
+  color: white;
 }
 
 .has-wifi-false {
   color: red;
+  text-decoration: line-through;
 }

@@ -12,7 +12,7 @@
     {{coords.latitude}}, {{coords.longitude}}
     <ul>
       <li ng-repeat="venue in venues" class="state-{{venue.state}} has-wifi-{{venue.hasWifi}}">
-        {{venue.name}}
+        <span class="result-wrap">{{venue.name}}</span>
       </li>
     </ul>
   </body>
