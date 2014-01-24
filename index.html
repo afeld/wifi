@@ -13,10 +13,10 @@
     {{coords.latitude}}, {{coords.longitude}}
     <ul>
       <li ng-repeat="venue in venues" class="state-{{venue.state}} is-open-{{venue.hours.isOpen}} has-wifi-{{venue.hasWifi}}">
-        <span class="result-wrap">
+        <a class="result-wrap" href="{{venue.canonicalUrl}}">
           <i class="fa fa-clock-o is-open-icon"></i>
           <i class="fa fa-cloud wifi-icon"></i>
-          {{venue.name}}
+          <span class="result-name">{{venue.name}}</span>
         </span>
       </li>
     </ul>

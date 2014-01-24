@@ -4,13 +4,20 @@ body {
 }
 
 li {
-  color: gray;
   line-height: 1.4;
+  list-style: none;
   padding: 4px 0;
 }
 
 .result-wrap {
+  color: gray;
   padding: 3px 5px;
+  text-decoration: none;
+}
+
+.result-wrap:hover .result-name {
+  color: #4E4E4E;
+  text-shadow: -1px 2px 1px #B4B4B4;
 }
 
 .is-open-true .is-open-icon {
