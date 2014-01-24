@@ -5,18 +5,10 @@
 
   var wifiApp = angular.module('wifiApp', ['geolocation']);
 
-  wifiApp.controller('VenuesCtrl', function($scope, geolocation, $http) {
-    $scope.venues = [];
 
-    geolocation.getLocation().then(function(data){
-      $scope.coords = {
-        lat: data.coords.latitude,
-        long: data.coords.longitude
-      };
-    });
-
-    $scope.$watch('coords', function(coords){
-      if (coords) {
+  wifiApp.factory('venuesApi', function($http){
+    return {
+      get: function(coords) {
         var venuesPromise = $http.get('https://api.foursquare.com/v2/venues/search', {
           cache: true,
           params: {
@@ -25,12 +17,32 @@
             v: 20140122,
 
             q: 'wi-fi',
-            ll: coords.lat + ',' + coords.long
+            ll: coords.latitude + ',' + coords.longitude
           }
         });
 
-        venuesPromise.then(function(data){
-          $scope.venues = data.data.response.venues;
+        venuesPromise = venuesPromise.then(function(data){
+          return data.data.response.venues;
+        });
+
+        return venuesPromise;
+      }
+    };
+  });
+
+
+  wifiApp.controller('VenuesCtrl', function($scope, geolocation, venuesApi) {
+    $scope.venues = [];
+
+    geolocation.getLocation().then(function(data){
+      $scope.coords = data.coords;
+    });
+
+    $scope.$watch('coords', function(coords){
+      if (coords) {
+        var venuesPromise = venuesApi.get(coords);
+        venuesPromise.then(function(venues){
+          $scope.venues = venues;
         });
       }
     });
