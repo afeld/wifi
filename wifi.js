@@ -120,13 +120,13 @@
       var sum = 0;
 
       if (venue.hours && venue.hours.isOpen !== undefined) {
-        sum += venue.hours.isOpen ? -100 : 100;
+        sum += venue.hours.isOpen ? -1000 : 1000;
       }
       if (venue.hasWifi !== undefined) {
-        sum += venue.hasWifi ? -10 : 10;
+        sum += venue.hasWifi ? -100 : 100;
       }
       if (venue.rating !== undefined) {
-        sum += (venue.rating - 5) / -10;
+        sum += -1 * venue.rating;
       }
 
       return sum;
