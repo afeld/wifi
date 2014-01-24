@@ -34,9 +34,20 @@ li {
   color: red;
 }
 
-.has-wifi-true.is-open-true .result-wrap,
-.has-wifi-true.is-open-true .is-open-icon,
-.has-wifi-true.is-open-true .wifi-icon {
+.has-wifi-true.is-open-true {
   background-color: green;
+}
+.has-wifi-true.is-open-true,
+.has-wifi-true.is-open-true .state-icon {
   color: white;
+}
+.has-wifi-true.is-open-true:hover {
+  background-color: white;
+  border: 3px solid green;
+  box-shadow: -2px 2px 5px #929292;
+}
+.has-wifi-true.is-open-true:hover .state-icon,
+.has-wifi-true.is-open-true:hover .result-name {
+  color: green;
+  text-shadow: none;
 }
