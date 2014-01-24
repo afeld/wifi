@@ -9,24 +9,30 @@ li {
 }
 
 .result-wrap {
-  padding: 1px 3px;
+  padding: 3px 5px;
 }
 
 .state-pending {
   color: gray;
 }
 
-.has-wifi-true .result-wrap {
-  background-color: green;
-  color: white;
+.is-open-true .is-open-icon {
+  color: green;
 }
-.has-wifi-false {
+.is-open-false .is-open-icon {
+  border: red;
+}
+
+.has-wifi-true .wifi-icon {
+  color: green;
+}
+.has-wifi-false .wifi-icon {
   color: red;
 }
 
-.is-open-true .result-wrap {
-  border: 2px solid black;
-}
-.is-open-false .result-wrap {
-  border: 2px solid red;
+.has-wifi-true.is-open-true .result-wrap,
+.has-wifi-true.is-open-true .is-open-icon,
+.has-wifi-true.is-open-true .wifi-icon {
+  background-color: green;
+  color: white;
 }

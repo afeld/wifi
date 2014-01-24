@@ -2,6 +2,7 @@
 <html ng-app="wifiApp">
   <head>
     <title>Nearby Wi-Fi Spots</title>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
     <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
@@ -11,8 +12,12 @@
   <body ng-controller="VenuesCtrl">
     {{coords.latitude}}, {{coords.longitude}}
     <ul>
-      <li ng-repeat="venue in venues" class="state-{{venue.state}} has-wifi-{{venue.hasWifi}} is-open-{{venue.hours.isOpen}}">
-        <span class="result-wrap">{{venue.name}}</span>
+      <li ng-repeat="venue in venues" class="state-{{venue.state}} is-open-{{venue.hours.isOpen}} has-wifi-{{venue.hasWifi}}">
+        <span class="result-wrap">
+          <i class="fa fa-clock-o is-open-icon"></i>
+          <i class="fa fa-cloud wifi-icon"></i>
+          {{venue.name}}
+        </span>
       </li>
     </ul>
   </body>
