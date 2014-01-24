@@ -35,7 +35,13 @@
 
             q: 'wi-fi',
             intent: 'checkin',
-            ll: coords.latitude + ',' + coords.longitude
+            ll: coords.latitude + ',' + coords.longitude,
+            categoryId: [
+              // Food
+              '4d4b7105d754a06374d81259',
+              // Nightlife Spot
+              '4d4b7105d754a06376d81259'
+            ].join(',')
           }
         });
 
