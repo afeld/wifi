@@ -3,6 +3,10 @@
   var CLIENT_ID = 'IBFUDPTFRDXZDBZJB4FZQ4QWDPPCTDRWWMCB0XXWNLW524ZD';
   var CLIENT_SECRET = 'V1NS4BZV014GW5HK0JH2N1K3ZANXMOBEI0EIUG02SWRU3BO4';
 
+  // round for better caching
+  // http://en.wikipedia.org/wiki/Decimal_degrees
+  var GEO_DECIMALS = 3;
+
   var wifiApp = angular.module('wifiApp', ['geolocation', 'jmdobry.angular-cache']);
 
 
@@ -35,7 +39,7 @@
 
             q: 'wi-fi',
             intent: 'checkin',
-            ll: coords.latitude + ',' + coords.longitude,
+            ll: coords.latitude.toFixed(GEO_DECIMALS) + ',' + coords.longitude.toFixed(GEO_DECIMALS),
             categoryId: [
               // Food
               '4d4b7105d754a06374d81259',
