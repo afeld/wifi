@@ -3,10 +3,25 @@
   var CLIENT_ID = 'IBFUDPTFRDXZDBZJB4FZQ4QWDPPCTDRWWMCB0XXWNLW524ZD';
   var CLIENT_SECRET = 'V1NS4BZV014GW5HK0JH2N1K3ZANXMOBEI0EIUG02SWRU3BO4';
 
-  var wifiApp = angular.module('wifiApp', ['geolocation']);
+  var wifiApp = angular.module('wifiApp', ['geolocation', 'jmdobry.angular-cache']);
 
+  wifiApp.run(function($http, $angularCacheFactory) {
+    // http://jmdobry.github.io/angular-cache/configuration.html
+    $angularCacheFactory('httpCache', {
+      // Items added to this cache expire after 15 minutes
+      maxAge: 900000,
+      // Items will be actively deleted when they expire
+      deleteOnExpire: 'aggressive',
+      // This cache will clear itself every hour
+      cacheFlushInterval: 3600000,
+      // This cache will sync itself with localStorage
+      storageMode: 'localStorage'
+    });
 
-  wifiApp.factory('venuesApi', function($http){
+    $http.defaults.cache = $angularCacheFactory.get('httpCache');
+  });
+
+  wifiApp.factory('venuesApi', function($http) {
     return {
       get: function(coords) {
         var venuesPromise = $http.get('https://api.foursquare.com/v2/venues/search', {
