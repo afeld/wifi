@@ -6,6 +6,9 @@
   // round for better caching
   // http://en.wikipedia.org/wiki/Decimal_degrees
   var GEO_DECIMALS = 3;
+  var NO_WIFI_REGEX = /\b(no|don'?t have|had)\s+wi-?fi\b/i;
+  var HAS_WIFI_REGEX = /\b((have|great|the)\s+wi-?fi|wi-?fi\s+password)\b/i;
+  var MAYBE_WIFI_REGEX = /\b(wi-?fi|internet|network)\b/i;
 
   var wifiApp = angular.module('wifiApp', ['geolocation', 'jmdobry.angular-cache']);
 
@@ -80,6 +83,25 @@
               venue.hasWifi = group.items[0].displayValue === 'Yes';
             }
           });
+
+          if (venue.hasWifi === undefined) {
+            angular.forEach(venue.tips.groups, function(group){
+              angular.forEach(group.items, function(tip){
+                if (NO_WIFI_REGEX.test(tip.text)) {
+                  console.log('FOUND NO: ' + venue.name);
+                  console.log(tip.text);
+                  venue.hasWifi = false;
+                } else if (HAS_WIFI_REGEX.test(tip.text)) {
+                  console.log('FOUND YES: ' + venue.name);
+                  console.log(tip.text);
+                  venue.hasWifi = true;
+                } else if (MAYBE_WIFI_REGEX.test(tip.text)) {
+                  console.log('FOUND MAYBE: ' + venue.name);
+                  console.log(tip.text);
+                }
+              });
+            });
+          }
 
           return venue;
         });
