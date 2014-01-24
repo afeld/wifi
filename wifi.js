@@ -115,6 +115,23 @@
   wifiApp.controller('VenuesCtrl', function($scope, geolocation, venuesApi, venueDetails) {
     $scope.venues = [];
 
+    // sort by open-ness, then wifi, then rating
+    $scope.venueSort = function(venue) {
+      var sum = 0;
+
+      if (venue.hours && venue.hours.isOpen !== undefined) {
+        sum += venue.hours.isOpen ? -100 : 100;
+      }
+      if (venue.hasWifi !== undefined) {
+        sum += venue.hasWifi ? -10 : 10;
+      }
+      if (venue.rating !== undefined) {
+        sum += (venue.rating - 5) / -10;
+      }
+
+      return sum;
+    };
+
     geolocation.getLocation().then(function(data){
       $scope.coords = data.coords;
     });
