@@ -19,6 +19,10 @@ li {
   margin-left: 2px;
 }
 
+.is-open-false {
+  opacity: 0.4;
+}
+
 .result-wrap:hover .result-name {
   color: #4E4E4E;
   text-shadow: -1px 2px 1px #B4B4B4;
