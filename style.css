@@ -28,7 +28,7 @@ li {
   color: green;
 }
 .is-open-false .is-open-icon {
-  border: red;
+  color: red;
 }
 
 .has-wifi-true .wifi-icon {
