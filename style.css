@@ -15,6 +15,10 @@ li {
   text-decoration: none;
 }
 
+.result-name {
+  margin-left: 2px;
+}
+
 .result-wrap:hover .result-name {
   color: #4E4E4E;
   text-shadow: -1px 2px 1px #B4B4B4;
@@ -42,12 +46,11 @@ li {
   color: white;
 }
 .has-wifi-true.is-open-true:hover {
-  background-color: white;
   border: 3px solid green;
   box-shadow: -2px 2px 5px #929292;
 }
 .has-wifi-true.is-open-true:hover .state-icon,
 .has-wifi-true.is-open-true:hover .result-name {
-  color: green;
+  color: white;
   text-shadow: none;
 }
