@@ -34,8 +34,8 @@
     });
 
     $angularCacheFactory('httpCache', {
-      // Items added to this cache expire after 15 minutes
-      maxAge: 900000
+      // Items added to this cache expire after one day
+      maxAge: 86400000
     });
 
     $http.defaults.cache = $angularCacheFactory.get('httpCache');
