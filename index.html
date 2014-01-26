@@ -10,7 +10,6 @@
     <script src="wifi.js"></script>
   </head>
   <body ng-controller="VenuesCtrl">
-    {{coords.latitude}}, {{coords.longitude}}
     <ul>
       <li ng-repeat="venue in venues | orderBy:venueSort">
         <a class="result-wrap state-{{venue.state}} is-open-{{venue.hours.isOpen}} has-wifi-{{venue.hasWifi}}" href="{{venue.canonicalUrl}}">
