@@ -150,8 +150,6 @@
 
 
   wifiApp.controller('VenuesCtrl', function($scope, geolocator, venuesApi, venueDetails) {
-    $scope.venues = [];
-
     // sort by open-ness, then wifi, then rating
     $scope.venueSort = function(venue) {
       var sum = 0;
