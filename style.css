@@ -47,7 +47,7 @@ li {
 .no-indicator,
 .is-open-false .is-open-icon,
 .has-wifi-false .wifi-icon {
-  color: red;
+  color: #F14343;
 }
 
 .has-wifi-true.is-open-true {
