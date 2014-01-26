@@ -10,6 +10,14 @@
     <script src="wifi.js"></script>
   </head>
   <body ng-controller="VenuesCtrl">
+    <h1>Nearby Wi-fi</h1>
+    <div class="key indicator-keys">
+      <span><i class="fa fa-clock-o"></i>: is it open</span>
+      <span><i class="fa fa-rss"></i>: does it have wifi</span>
+      <span class="yes-indicator">yes</span>
+      <span class="no-indicator">no</span>
+      <span class="maybe-indicator">maybe</span>
+    </div>
     <ul>
       <li ng-repeat="venue in venues | orderBy:venueSort">
         <a class="result-wrap state-{{venue.state}} is-open-{{venue.hours.isOpen}} has-wifi-{{venue.hasWifi}}" href="{{venue.canonicalUrl}}">

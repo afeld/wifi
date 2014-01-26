@@ -1,18 +1,29 @@
 body {
   font-family: Helvetica, sans-serif;
-  font-size: 2em;
+}
+
+.key span:after {
+  color: black;
+  content: " | ";
+}
+.key span:last-child:after {
+  content: "";
 }
 
 li {
+  font-size: 2em;
   line-height: 1.4;
   list-style: none;
   padding: 4px 0;
 }
 
 .result-wrap {
-  color: gray;
   padding: 3px 5px;
   text-decoration: none;
+}
+.maybe-indicator,
+.result-wrap {
+  color: gray;
 }
 
 .result-name {
@@ -28,16 +39,13 @@ li {
   text-shadow: -1px 2px 1px #B4B4B4;
 }
 
-.is-open-true .is-open-icon {
-  color: green;
-}
-.is-open-false .is-open-icon {
-  color: red;
-}
-
+.yes-indicator,
+.is-open-true .is-open-icon,
 .has-wifi-true .wifi-icon {
   color: green;
 }
+.no-indicator,
+.is-open-false .is-open-icon,
 .has-wifi-false .wifi-icon {
   color: red;
 }
