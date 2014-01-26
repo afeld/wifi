@@ -10,20 +10,32 @@
   var HAS_WIFI_REGEX = /\b((have|great|the)\s+wi-?fi|wi-?fi\s+password)\b/i;
   var MAYBE_WIFI_REGEX = /\b(wi-?fi|internet|network)\b/i;
 
-  var wifiApp = angular.module('wifiApp', ['geolocation', 'jmdobry.angular-cache']);
+  var wifiApp = angular.module('wifiApp', ['jmdobry.angular-cache', 'geolocation']);
 
 
-  wifiApp.run(function($http, $angularCacheFactory) {
+  wifiApp.config(function($angularCacheFactoryProvider){
     // http://jmdobry.github.io/angular-cache/configuration.html
-    $angularCacheFactory('httpCache', {
-      // Items added to this cache expire after 15 minutes
-      maxAge: 900000,
+
+    $angularCacheFactoryProvider.setCacheDefaults({
       // Items will be actively deleted when they expire
       deleteOnExpire: 'aggressive',
       // This cache will clear itself every hour
       cacheFlushInterval: 3600000,
       // This cache will sync itself with localStorage
       storageMode: 'localStorage'
+    });
+  });
+
+
+  wifiApp.run(function($angularCacheFactory, $http) {
+    $angularCacheFactory('geoCache', {
+      // Items added to this cache expire after 3 minutes
+      maxAge: 180000
+    });
+
+    $angularCacheFactory('httpCache', {
+      // Items added to this cache expire after 15 minutes
+      maxAge: 900000
     });
 
     $http.defaults.cache = $angularCacheFactory.get('httpCache');
@@ -112,7 +124,32 @@
   });
 
 
-  wifiApp.controller('VenuesCtrl', function($scope, geolocation, venuesApi, venueDetails) {
+  // cached wrapper of geolocation
+  wifiApp.factory('geolocator', function($q, $angularCacheFactory, geolocation) {
+    var geoCache = $angularCacheFactory.get('geoCache');
+    return {
+      getLocation: function() {
+        var geoData = geoCache.get('whereami');
+        var geoPromise;
+
+        if (geoData) {
+          var geoDeferred = $q.defer();
+          geoDeferred.resolve(geoData);
+          geoPromise = geoDeferred.promise;
+        } else {
+          geoPromise = geolocation.getLocation();
+          geoPromise.then(function(data) {
+            geoCache.put('whereami', data);
+          });
+        }
+
+        return geoPromise;
+      }
+    }
+  });
+
+
+  wifiApp.controller('VenuesCtrl', function($scope, geolocator, venuesApi, venueDetails) {
     $scope.venues = [];
 
     // sort by open-ness, then wifi, then rating
@@ -132,8 +169,9 @@
       return sum;
     };
 
-    geolocation.getLocation().then(function(data){
-      $scope.coords = data.coords;
+    geolocator.getLocation().then(function(data){
+      var coords = data.coords;
+      $scope.coords = coords;
     });
 
     $scope.$watch('coords', function(coords){
