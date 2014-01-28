@@ -60,7 +60,9 @@
               // Food
               '4d4b7105d754a06374d81259',
               // Nightlife Spot
-              '4d4b7105d754a06376d81259'
+              '4d4b7105d754a06376d81259',
+              // Travel & Transport
+              '4d4b7105d754a06379d81259'
             ].join(',')
           }
         });
