@@ -17,8 +17,12 @@ angular.module('wifiApp').controller('VenuesCtrl', function($scope, geolocator, 
   };
 
   geolocator.getLocation().then(function(data){
-    var coords = data.coords;
-    $scope.coords = coords;
+    $scope.coords = data.coords;
+    // override - NYC
+    // $scope.coords = {
+    //   latitude: 40.676816,
+    //   longitude: -73.971052
+    // };
   });
 
   $scope.$watch('coords', function(coords){
