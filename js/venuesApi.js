@@ -15,7 +15,7 @@ angular.module('wifiApp').factory('venuesApi', function($http, credentials) {
           q: 'wi-fi',
           intent: 'checkin',
           ll: coords.latitude.toFixed(GEO_DECIMALS) + ',' + coords.longitude.toFixed(GEO_DECIMALS),
-          radius: 4000, // meters
+          radius: 1600, // meters
           categoryId: [
             // Food
             '4d4b7105d754a06374d81259',
