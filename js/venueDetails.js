@@ -39,6 +39,13 @@ angular.module('wifiApp').factory('venueDetails', function($http, credentials) {
           });
         }
 
+        if (venue.hours && venue.hours.isOpen !== undefined) {
+          venue.isOpen = venue.hours.isOpen;
+        } else if (venue.popular && venue.popular.isOpen !== undefined) {
+          // "likely open"
+          venue.isOpen = venue.popular.isOpen;
+        }
+
         return venue;
       });
 

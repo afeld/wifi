@@ -26,7 +26,7 @@
     </div>
     <ul>
       <li ng-repeat="venue in venues | orderBy:venueSort">
-        <a class="result-wrap state-{{venue.state}} is-open-{{venue.hours.isOpen}} has-wifi-{{venue.hasWifi}}" href="{{venue.canonicalUrl}}">
+        <a class="result-wrap state-{{venue.state}} is-open-{{venue.isOpen}} has-wifi-{{venue.hasWifi}}" href="{{venue.canonicalUrl}}">
           <i class="fa fa-clock-o state-icon is-open-icon"></i>
           <i class="fa fa-rss state-icon wifi-icon"></i>
           <span class="result-name">{{venue.name}}</span>
