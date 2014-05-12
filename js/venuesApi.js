@@ -5,30 +5,29 @@ angular.module('wifiApp').factory('venuesApi', function($http, credentials) {
 
   return {
     get: function(coords) {
-      var venuesPromise = $http.get('https://api.foursquare.com/v2/venues/search', {
+      var venuesPromise = $http.get('https://api.foursquare.com/v2/venues/explore', {
         cache: true,
         params: {
           client_id: credentials.clientId,
           client_secret: credentials.clientSecret,
           v: 20140122,
 
-          q: 'wi-fi',
-          intent: 'checkin',
+          query: 'wifi',
           ll: coords.latitude.toFixed(GEO_DECIMALS) + ',' + coords.longitude.toFixed(GEO_DECIMALS),
           radius: 1600, // meters
-          categoryId: [
-            // Food
-            '4d4b7105d754a06374d81259',
-            // Nightlife Spot
-            '4d4b7105d754a06376d81259',
-            // Hotel
-            '4bf58dd8d48988d1fa931735'
-          ].join(',')
+          openNow: true,
+          limit: 10
         }
       });
 
       venuesPromise = venuesPromise.then(function(data){
-        return data.data.response.venues;
+        var results = [];
+        angular.forEach(data.data.response.groups, function(group) {
+          angular.forEach(group.items, function(item) {
+            results.push(item.venue);
+          });
+        });
+        return results;
       });
 
       return venuesPromise;
