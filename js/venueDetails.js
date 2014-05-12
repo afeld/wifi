@@ -27,7 +27,7 @@ angular.module('wifiApp').factory('venueDetails', function($http, credentials) {
                 console.log('FOUND NO: ' + venue.name);
                 console.log(text);
                 venue.hasWifi = false;
-              } else if (/\b((have|great|the)\s+wi-?fi|wi-?fi\s+(pass(word)?|ps?wd))\b/i.test(text)) {
+              } else if (/\b((have|great|the|free)\s+wi-?fi|wi-?fi\s+(pass(word)?|ps?wd))\b/i.test(text)) {
                 console.log('FOUND YES: ' + venue.name);
                 console.log(text);
                 venue.hasWifi = true;
