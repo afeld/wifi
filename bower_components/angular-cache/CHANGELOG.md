@@ -1,3 +1,53 @@
+##### 2.4.1 - 18 October 2014
+
+###### Backwards compatible bug fixes
+- #133 - Fix ios privacy mode
+
+##### 2.4.0 - 14 October 2014
+
+###### Backwards compatible API changes
+- #131 - Added a flag to allow storing promises
+
+###### Backwards compatible bug fixes
+- #128 - Fix for exception thrown in iOS privacy mode
+- #130 - (Docs) Wrong value for cache flush interval  
+- #132 - stringifyNumber(0) fails to stringify
+
+##### 2.3.7 - 16 June 2014
+
+###### Backwards compatible bug fixes
+- Angular 1.2.18 with $http/localStorage #116
+
+##### 2.3.6 - 15 June 2014
+
+###### Backwards compatible bug fixes
+- $http w/ cache is trying to store a promise, which dies on JSON.stringify #115
+
+##### 2.3.5 - 15 June 2014
+
+###### Backwards compatible bug fixes
+- Page refresh retouches cache expiry times with defaults #114
+
+##### 2.3.4 - 01 May 2014
+
+###### Backwards compatible bug fixes
+- Fix module definition and load sequencing #111
+
+##### 2.3.3 - 24 February 2014
+
+###### Backwards compatible bug fixes
+- *sigh* Fixed #102 (regression from #100)
+
+##### 2.3.2 - 23 February 2014
+
+###### Backwards compatible bug fixes
+- Fixed #100 (regression from #89)
+
+##### 2.3.1 - 19 February 2014
+
+###### Backwards compatible bug fixes
+- Fixed #89
+
 ##### 2.3.0 - 09 January 2014
 - Caches can now be disabled #82
 - The `options` object (`$angularCacheFactory()`, `AngularCache#setOptions()`, and `$angularCacheFactoryProvider.setCacheDefaults()`) now accepts a `disabled` field, which can be set to `true` and defaults to `false`.
