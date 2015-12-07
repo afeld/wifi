@@ -1,42 +1,190 @@
-##### 2.4.1 - 18 October 2014
+##### 4.4.1 12 October 2015
+
+- #203 - trouble: bundle with r.js not works
+
+##### 4.4.0 12 October 2015
+
+- #200 - 4.3 storagePrefix is not backwards compatible
+- #201 - webpack minification error
+
+##### 4.3.2 10 July 2015
+
+- #191 - yabh issue with ie8
+
+##### 4.3.1 07 July 2015
+
+- #190 - 4.3 breaks phantomJS tests
+
+##### 4.3.0 06 July 2015
+
+- #189 - Extracted non-angular code.
+
+##### 4.2.2 01 July 2015
 
 ###### Backwards compatible bug fixes
-- #133 - Fix ios privacy mode
+- #165 - storageMode does not inherits from defaults
 
-##### 2.4.0 - 14 October 2014
+##### 4.2.1 01 July 2015
+
+Upgraded dependencies
+Better CommonJS interop
+Added a number of build examples
+
+##### 4.2.0 27 April 2015
+
+###### Backwards compatible bug fixes
+- #174 - Cache not being fully emptied if using localStorage and multiple web pages
+
+##### 4.1.0 30 March 2015
 
 ###### Backwards compatible API changes
-- #131 - Added a flag to allow storing promises
+- #169 - Official support for ngResource
+
+##### 4.0.2 22 March 2015
 
 ###### Backwards compatible bug fixes
-- #128 - Fix for exception thrown in iOS privacy mode
-- #130 - (Docs) Wrong value for cache flush interval  
-- #132 - stringifyNumber(0) fails to stringify
+- #164 - onExpire is still called when cache is empty
 
-##### 2.3.7 - 16 June 2014
+##### 4.0.1 20 March 2015
+
+###### Backwards compatible bug fixes
+- #163 - Configuring CacheOption storagePrefix results in "true.{key}"
+
+##### 4.0.0 15 March 2015
+
+###### Breaking API changes
+- Completely disassociated angular-cache from the deprecated angular-data (angular-data has been replaced by js-data + js-data-angular)
+- Angular module renamed to _angular-cache_
+- _DSCacheFactory_ renamed to _CacheFactory_
+- _DSBinaryHeap_ renamed to _BinaryHeap_
+- Removed `DSCacheFactoryProvider.setCacheDefaults`. You now do `angular.extend(CacheFactoryProvider.defaults, { ... });`
+- No longer exposing a `DSCache` constructor function (as it no longer exists)
+- `storageMode` can now be set dynamically, which will remove all items from current storage and insert them into the new storage
+
+###### Other
+- Fixes #161
+- Converted to ES6 and a webpack build with better umd support
+- Now exporting the module name _angular-cache_ (when you do `require('angular-cache')` you get `"angular-cache"`)
+- Deprecating angular-cache < 4.0.0
+
+##### 3.2.5 02 February 2015
+
+###### Backwards compatible bug fixes
+- #152 - Expired items sometimes only expire after double time.
+- #153 - Missing angular dependency in bower.json
+
+##### 3.2.4 17 December 2014
+
+###### Backwards compatible bug fixes
+- #149 - when removing an object from localStorage the key didn't get removed if the passed parameter is of number type.
+
+##### 3.2.3 13 December 2014
+
+###### Backwards compatible bug fixes
+- #112 - $resource cache and 3.0.0-beta-x
+- #122 - Error using DSCacheFactory with $http/ $resource and localStorage
+- #148 - Illegal operation when using local-/sessionStorage
+
+##### 3.2.2 24 November 2014
+
+###### Backwards compatible bug fixes
+- #147 - `storeOnResolve` and `storeOnReject` should default to `false`
+
+##### 3.2.1 10 November 2014
+
+###### Backwards compatible bug fixes
+- #142 - Use JSON.stringify instead of angular.toJson
+
+##### 3.2.0 07 November 2014
+
+###### Backwards compatible API changes
+- #135 - Closes #135. (Improved handling of promises.)
+
+##### 3.1.1 28 August 2014
+
+###### Backwards compatible bug fixes
+- #124 - DSCache.info does not work if the storageMode is localStorage.
+- #127 - requirejs conflict, require object overwritten
+
+##### 3.1.0 15 July 2014
+
+###### Backwards compatible API changes
+- #117 - call to DSCacheFactory(...) produces JSHint warning (Added DSCacheFactory.createCache method)
+
+###### Backwards compatible bug fixes
+- #118 - dist/angular-cache.js doesn't end with a semicolon (Upgraded dependencies)
+- #120 - How come the non minified version has minified code? (Upgraded dependencies)
+
+##### 3.0.3 16 June 2014
 
 ###### Backwards compatible bug fixes
 - Angular 1.2.18 with $http/localStorage #116
 
-##### 2.3.6 - 15 June 2014
+##### 3.0.2 15 June 2014
 
 ###### Backwards compatible bug fixes
 - $http w/ cache is trying to store a promise, which dies on JSON.stringify #115
 
-##### 2.3.5 - 15 June 2014
+##### 3.0.1 14 June 2014
 
 ###### Backwards compatible bug fixes
-- Page refresh retouches cache expiry times with defaults #114
+- Added polyfill for `$$minErr`.
 
-##### 2.3.4 - 01 May 2014
+##### 3.0.0 14 June 2014
+
+3.0.0 Release
+
+##### 3.0.0-beta.4 22 April 2014
+
+###### Backwards compatible API changes
+- Add feature to 'touch' elements in the cache #103
 
 ###### Backwards compatible bug fixes
-- Fix module definition and load sequencing #111
+- `localstorage` and Safari Private Browsing #107
+
+##### 3.0.0-beta.3 03 March 2014
+
+###### Backwards compatible bug fixes
+- Fixed duplicate keys when using localStorage #106
+
+##### 3.0.0-beta.2 25 February 2014
+
+###### Backwards compatible bug fixes
+- Fixed missing reference to DSBinaryHeap #105
+
+##### 3.0.0-beta.1 24 February 2014
+
+###### Breaking API changes
+- `maxAge` and `deleteOnExpire` are no longer overridable for individual items
+- Renamed angular module to `angular-data.DSCacheFactory`. Angular-cache is now part of the `angular-data` namespace
+- The `verifyIntegrity` option has been completely removed due to a cache being exclusively in-memory OR in web storage #96
+- Supported values for the `storageMode` option are now: `"memory"`, `"localStorage"` or `"sessionStorage"` with the default being `"memory"`
+- `DSCache#put(key, value)` no longer accepts a third `options` argument
+- `DSCache#removeExpired()` no longer accepts an `options` argument and thus no longer supports returning removed expired items as an array
+- `DSCache#remove(key)` no longer accepts an `options` argument
+- `DSCache#setOptions(options[, strict])` no longer accepts `storageMode` and `storageImpl` as part of the `options` argument
+- `storageMode` is no longer dynamically configurable
+- `storageImpl` is no longer dynamically configurable
+
+###### Backwards compatible API changes
+- Added `DSCache#enable()`
+- Added `DSCache#disable()`
+- Added `DSCache#setCapacity(capacity)`
+- Added `DSCache#setMaxAge(maxAge)`
+- Added `DSCache#setCacheFlushInterval(cacheFlushInterval)`
+- Added `DSCache#setRecycleFreq(recycleFreq)`
+- Added `DSCache#setDeleteOnExpire(deleteOnExpire)`
+- Added `DSCache#setOnExpire(onExpire)`
+- Added option `storagePrefix` for customizing the prefix used in `localStorage`, etc. #98
+- Refactored to be in-memory OR webStorage, never both #96
+
+###### Other
+- I might have missed something...
 
 ##### 2.3.3 - 24 February 2014
 
 ###### Backwards compatible bug fixes
-- *sigh* Fixed #102 (regression from #100)
+- *sigh Fixed #102 (regression from #100)
 
 ##### 2.3.2 - 23 February 2014
 

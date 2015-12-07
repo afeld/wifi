@@ -1,6 +1,6 @@
 // cached wrapper of geolocation
-angular.module('wifiApp').factory('geolocator', function($q, $angularCacheFactory, geolocation) {
-  var geoCache = $angularCacheFactory.get('geoCache');
+angular.module('wifiApp').factory('geolocator', function($q, CacheFactory, geolocation) {
+  var geoCache = CacheFactory.get('geoCache');
   return {
     getLocation: function() {
       var geoData = geoCache.get('whereami');

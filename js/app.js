@@ -1,10 +1,10 @@
 angular.module('wifiApp', [
-  'jmdobry.angular-cache',
+  'angular-cache',
   'geolocation'
-]).config(function($angularCacheFactoryProvider){
-  // http://jmdobry.github.io/angular-cache/configuration.html
+]).config(function(CacheFactoryProvider){
+  // http://jmdobry.github.io/angular-cache/#configuration-options
 
-  $angularCacheFactoryProvider.setCacheDefaults({
+  angular.extend(CacheFactoryProvider.defaults, {
     // Items will be actively deleted when they expire
     deleteOnExpire: 'aggressive',
     // This cache will clear itself every hour
@@ -12,16 +12,16 @@ angular.module('wifiApp', [
     // This cache will sync itself with localStorage
     storageMode: 'localStorage'
   });
-}).run(function($angularCacheFactory, $http) {
-  $angularCacheFactory('geoCache', {
+}).run(function(CacheFactory, $http) {
+  CacheFactory('geoCache', {
     // Items added to this cache expire after 3 minutes
     maxAge: 180000
   });
 
-  $angularCacheFactory('httpCache', {
+  CacheFactory('httpCache', {
     // Items added to this cache expire after one day
     maxAge: 86400000
   });
 
-  $http.defaults.cache = $angularCacheFactory.get('httpCache');
+  $http.defaults.cache = CacheFactory.get('httpCache');
 });
